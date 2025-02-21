@@ -21,6 +21,7 @@ This is a food website that allows users to **sort food items by categories** an
    npm install
    
 2. **Start the Development Server**:
+   ```bash
 npm run dev
 
 3. **Open the App**:
