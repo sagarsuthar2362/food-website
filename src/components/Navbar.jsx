@@ -3,9 +3,12 @@ import { IoRestaurantSharp } from "react-icons/io5";
 import { CiSearch } from "react-icons/ci";
 import { FaShoppingCart } from "react-icons/fa";
 import { dataContext } from "../context/UserContext";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
-  let { input, setInput } = useContext(dataContext);
+  let { input, setInput, setShowCart } = useContext(dataContext);
+
+  const items = useSelector((state) => state.cart);
 
   return (
     <div>
@@ -27,9 +30,12 @@ const Navbar = () => {
         </div>
 
         <div id="cart" className="relative">
-          <FaShoppingCart className="text-3xl" />
+          <FaShoppingCart
+            className="text-3xl"
+            onClick={() => setShowCart(true)}
+          />
           <span className="absolute -top-2 -right-5 bg-green-400 w-5 h-5 rounded-full flex items-center justify-center">
-            0
+          {items.length}
           </span>
         </div>
       </nav>
