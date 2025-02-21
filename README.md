@@ -22,7 +22,7 @@ This is a food website that allows users to **sort food items by categories** an
    
 2. **Start the Development Server**:
    ```bash
-npm run dev
+   npm run dev
 
 3. **Open the App**:
    visit http://localhost:5173
