@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useCallback, useContext } from "react";
 import { MdDelete } from "react-icons/md";
-import { useDispatch } from "react-redux";
-import { RemoveCart } from "../redux/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { DecreaseQuantity, IncreaseQuantity, RemoveCart } from "../redux/cartSlice";
+import { dataContext } from "../context/UserContext";
+
 
 const Card2 = ({ image, name, price, id }) => {
   const dispatch = useDispatch();
+  const cartItems = useSelector((state) => state.cart);
+  const item = cartItems.find((item) => item.id === id);
 
   return (
     <div className="h-[120px] p-4 flex justify-between shadow-xl rounded-lg border border-zinc-200">
@@ -23,13 +27,19 @@ const Card2 = ({ image, name, price, id }) => {
             id="quantity"
             className="bg-white md:h-[50px] h-[35px] md:w-[130px] w-[80px] flex items-center rounded-lg overflow-hidden border border-zinc-500"
           >
-            <button className="bg-slate-200 md:w-[30%] w-[35%] h-full flex items-center justify-center text-xl font-semibold cursor-pointer hover:bg-slate-300">
+            <button
+              className="bg-slate-200 md:w-[30%] w-[35%] h-full flex items-center justify-center text-xl font-semibold cursor-pointer hover:bg-slate-300"
+              onClick={() =>  item.count > 1 ? dispatch(DecreaseQuantity(id)) : '1' }
+            >
               -
             </button>
             <span className="md:w-[60%] w-[30%]  text-center text-xl font-semibold">
-              1
+              {item ? item.count : 1}
             </span>
-            <button className="bg-slate-200 md:w-[30%] w-[35%] h-full flex items-center justify-center text-xl font-semibold cursor-pointer hover:bg-slate-300">
+            <button
+              className="bg-slate-200 md:w-[30%] w-[35%] h-full flex items-center justify-center text-xl font-semibold cursor-pointer hover:bg-slate-300"
+              onClick={() => dispatch(IncreaseQuantity(id))}
+            >
               +
             </button>
           </div>

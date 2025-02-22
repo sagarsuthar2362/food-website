@@ -35,7 +35,10 @@ const Home = () => {
   // these are the items which was added to cart
   const items = useSelector((state) => state.cart);
 
-  const subTotal = items.reduce((total, item) => total + item.price, 0);
+  const subTotal = items.reduce(
+    (total, item) => total + item.price * item.count,
+    0
+  );
   const deliveryFee = 20;
   const taxes = Math.round((subTotal * 0.6) / 100);
   const totalAmount = subTotal + deliveryFee + taxes;
@@ -124,31 +127,37 @@ const Home = () => {
                 name={product.food_name}
                 price={product.price}
                 id={product.id}
+                qty={1}
               />
             ))}
           </div>
 
           {items.length > 0 ? (
-            <div className="bg-red-100 border-t-2">
-              <div className="flex items-center justify-between p-2">
-                <span>Subtotal</span>
-                <span>{subTotal}/-</span>
+            <div className="uppercase">
+              <div className=" border-y-3 border-slate-500">
+                <div className="flex items-center justify-between p-2">
+                  <span className="font-semibold">Subtotal</span>
+                  <span className="font-bold">{subTotal}/-</span>
+                </div>
+                <div className="flex items-center justify-between p-2">
+                  <span>Delivery charges</span>
+                  <span>{deliveryFee}/-</span>
+                </div>
+                <div className="flex items-center justify-between p-2">
+                  <span>taxes</span>
+                  <span>{taxes}/-</span>
+                </div>
               </div>
+
               <div className="flex items-center justify-between p-2">
-                <span>Delivery charges</span>
-                <span>{deliveryFee}/-</span>
-              </div>
-              <div className="flex items-center justify-between p-2">
-                <span>taxes</span>
-                <span>{taxes}/-</span>
-              </div>
-              <div className="flex items-center justify-between p-2">
-                <span>total amount</span>
-                <span>{totalAmount}/-</span>
+                <span className="font-semibold">total amount</span>
+                <span className="text-xl font-bold">{totalAmount}/-</span>
               </div>
             </div>
           ) : (
-            <h1 className="text-center font-semibold text-xl text-gray-500">Your cart is empty</h1>
+            <h1 className="text-center font-semibold text-xl text-gray-500">
+              Your cart is empty
+            </h1>
           )}
         </div>
       )}
