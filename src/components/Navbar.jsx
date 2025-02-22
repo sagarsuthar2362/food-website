@@ -13,8 +13,8 @@ const Navbar = () => {
     <nav className="flex items-center justify-between shadow-md py-4 px-6 md:px-12 bg-white sticky top-0 left-0 w-full">
       {/* Logo */}
       <div className="flex items-center gap-2 text-green-600">
-        <IoRestaurantSharp className="text-4xl" />
-        <span className="font-bold text-2xl tracking-wide">SwadWagon</span>
+        <IoRestaurantSharp className="text-4xl " />
+        <span className="font-bold text-2xl tracking-wide md:block hidden">SwadWagon</span>
       </div>
 
       {/* Search Box */}

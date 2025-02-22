@@ -7,7 +7,6 @@ import { dataContext } from "../context/UserContext";
 import { RxCross2 } from "react-icons/rx";
 import Card2 from "../components/Card2";
 import { useSelector } from "react-redux";
-import { TbAlignBoxLeftStretch } from "react-icons/tb";
 
 const Home = () => {
   let { cate, setCate, input, setInput, showCart, setShowCart } =
@@ -127,7 +126,6 @@ const Home = () => {
                 name={product.food_name}
                 price={product.price}
                 id={product.id}
-                qty={1}
               />
             ))}
           </div>
